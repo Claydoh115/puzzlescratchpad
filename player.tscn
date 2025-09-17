@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://co5713gra6tv"]
+
+[ext_resource type="Script" uid="uid://dgytros3oc1un" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bhh2o2t4t07ry" path="res://Tilesheet/medieval_tilesheet.png" id="2_onrkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(1304, 440, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
+height = 20.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_sweqy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hqtel")
