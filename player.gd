@@ -1,6 +1,7 @@
 extends CharacterBody2D
 signal placeTile
 signal generateTiles
+signal toggle_pause
 
 @onready var tile_map = $"../TileMapLayer"
 @onready var ray_cast = get_node("RayCast2D")
@@ -22,30 +23,21 @@ func _process(delta):
 		return
 	if walkSpeed:
 		if Input.is_action_pressed("move_right"):
-			velocity.x = 1
 			move(Vector2.RIGHT)
 		elif Input.is_action_pressed("move_left"):
-			velocity.x = -1
 			move(Vector2.LEFT)
 		elif Input.is_action_pressed("move_down"):
-			velocity.y = 1
 			move(Vector2.DOWN)
 		elif Input.is_action_pressed("move_up"):
-			velocity.y = -1
 			move(Vector2.UP)
 	else:	
-		var velocity = Vector2.ZERO # The player's movement vector.
 		if Input.is_action_just_pressed("move_right"):
-			velocity.x = 1
 			move(Vector2.RIGHT)
 		elif Input.is_action_just_pressed("move_left"):
-			velocity.x = -1
 			move(Vector2.LEFT)
 		elif Input.is_action_just_pressed("move_down"):
-			velocity.y = 1
 			move(Vector2.DOWN)
 		elif Input.is_action_just_pressed("move_up"):
-			velocity.y = -1
 			move(Vector2.UP)
 
 	
@@ -87,6 +79,8 @@ func _input(event):
 		emit_signal("generateTiles")
 	if event.is_action_pressed("toggle_speed"):
 		walkSpeed = !walkSpeed
+	if event.is_action_pressed("toggle_pause"):
+		emit_signal("toggle_pause")
 
 func start(pos):
 	# position = pos

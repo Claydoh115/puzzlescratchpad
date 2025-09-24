@@ -12,4 +12,3 @@ func new_game():
 	$Player.show()
 	#target.global_position = tile_map.map_to_local(Vector2i(player.global_position.x + 1, player.global_position.y))
 	$TileMapLayer.show()
-	

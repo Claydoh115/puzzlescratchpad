@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b8rc1m0ryychd"]
+[gd_scene load_steps=12 format=4 uid="uid://b8rc1m0ryychd"]
 
 [ext_resource type="Script" uid="uid://dhj44tan5l6wf" path="res://map.gd" id="1_e0an3"]
 [ext_resource type="PackedScene" uid="uid://bwsqx4ivq5wxd" path="res://tile_map_layer.tscn" id="2_p5pve"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bhh2o2t4t07ry" path="res://Tilesheet/medieval_tilesheet.png" id="4_p5pve"]
 [ext_resource type="Texture2D" uid="uid://bpkd47we6fvfl" path="res://Tilesheet/targetReticle.png" id="5_urblq"]
 [ext_resource type="Texture2D" uid="uid://chihrp60xssow" path="res://Tilesheet/blankTarget.png" id="6_iw27f"]
+[ext_resource type="PackedScene" uid="uid://fgymd8ext80c" path="res://pause_menu.tscn" id="7_71pa8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urblq"]
 atlas = ExtResource("4_p5pve")
@@ -1428,7 +1429,12 @@ tile_map_data = PackedByteArray("AAAGAPz/AAAmACYAAAAGAP3/AAAmACcAAAAGAP7/AAAmACg
 tile_set = SubResource("TileSet_71pa8")
 y_sort_origin = 1
 
+[node name="pauseMenu" parent="." instance=ExtResource("7_71pa8")]
+process_mode = 3
+visible = false
+
 [connection signal="generateTiles" from="Player" to="." method="_on_player_generate_tiles"]
 [connection signal="generateTiles" from="Player" to="TileMapLayer" method="_on_player_generate_tiles"]
 [connection signal="placeTile" from="Player" to="." method="_on_player_place_tile"]
 [connection signal="placeTile" from="Player" to="TileMapLayer" method="_on_player_place_tile"]
+[connection signal="toggle_pause" from="Player" to="pauseMenu" method="_on_player_toggle_pause"]
